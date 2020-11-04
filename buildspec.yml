@@ -1,7 +1,7 @@
 version: 0.2
 env:
   variables:
-    FLASK_APP : "run.py"
+    FLASK_APP: "run.py"
 phases:
   install:
     runtime-versions:
@@ -11,8 +11,12 @@ phases:
       - echo Entered the pre_build phase...
       - pip install -r requirements.txt
       - pip install -e .
-    build:
+  build:
+    command:
       - python -m flask run
-    artifacts:
-      files:
-        - '**/*'
+  post_build:
+    commands:
+      - echo Build completed on `date`
+artifacts:
+  files:
+    - '**/*'
