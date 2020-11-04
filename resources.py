@@ -1,4 +1,6 @@
 import json
+import os
+
 from flask import render_template, make_response
 from flask_jwt_extended import (create_access_token, create_refresh_token, jwt_required, jwt_refresh_token_required,
                                 get_jwt_identity, get_raw_jwt)
@@ -105,7 +107,7 @@ class CheckService(Resource):
             "Content-Type": "application/json"
         }
         params = {
-            "key": "60df7660-c353-4214-9096-6398b7a56406",
+            "key": os.environ['grasshopper'],
         }
         data = {"points": [
             [
@@ -135,6 +137,7 @@ class CheckService(Resource):
                 int(route_response['paths'][0]['distance']) / 1000.0)}, 201
         else:
             return {'message': 'Service unavailable'}, 201
+
 
 class MainRoute(Resource):
     def get(self):

@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask
 from flask_jwt_extended import JWTManager
 from flask_restful import Api
@@ -8,13 +10,13 @@ from models import UserModel, RevokedTokenModel
 
 app = Flask(__name__)
 api = Api(app)
-app.config['SECRET_KEY'] = 'some-secret-string'
+app.config['SECRET_KEY'] = os.environ['secret-key']
 
 
-@app.before_first_request
-def create_tables():
-    UserModel.create_user_table()
-    RevokedTokenModel.create_revoke_table()
+# @app.before_first_request
+# def create_tables():
+#     UserModel.create_user_table()
+#     RevokedTokenModel.create_revoke_table()
 
 
 app.config['JWT_SECRET_KEY'] = 'jwt-secret-string'
