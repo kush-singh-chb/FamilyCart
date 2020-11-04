@@ -10,7 +10,7 @@ from models import UserModel, RevokedTokenModel
 
 app = Flask(__name__)
 api = Api(app)
-app.config['SECRET_KEY'] = os.environ['secret-key']
+app.config['SECRET_KEY'] = os.environ.get('secret-key')
 
 # @app.before_first_request
 # def create_tables():
