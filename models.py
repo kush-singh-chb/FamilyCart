@@ -3,7 +3,7 @@ from uuid import uuid4
 import boto3
 from passlib.hash import pbkdf2_sha256 as sha256
 
-db = boto3.resource('dynamodb', endpoint_url='http://localhost:8000')
+db = boto3.resource('dynamodb')
 
 
 class UserModel:
