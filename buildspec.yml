@@ -6,11 +6,12 @@ phases:
   install:
     runtime-versions:
       python: 3.7
+    commands:
+      - pip install -r requirements.txt
+        - pip install -e .
   pre_build:
     commands:
       - echo Entered the pre_build phase...
-      - pip install -r requirements.txt
-      - pip install -e .
   build:
     commands:
       - python -m flask run
