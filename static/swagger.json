@@ -1,0 +1,182 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "description": "Kush Singh Chibber",
+    "version": "1.0.2",
+    "title": "FamilyCart API",
+    "contact": {
+      "email": "support@familykart.com"
+    },
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "tags": [
+    {
+      "name": "User Registration",
+      "description": "Example API for requesting and return book requests"
+    }
+  ],
+  "paths": {
+    "/register": {
+      "post": {
+        "tags": [
+          "User Registration"
+        ],
+        "summary": "Create User",
+        "requestBody": {
+          "description": "User Register Post Object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterUser"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Failed. Bad post data."
+          },
+          "422": {
+            "description": "Invalid Data"
+          }
+        }
+      }
+    },
+    "/login": {
+      "post": {
+        "tags": [
+          "User Login"
+        ],
+        "summary": "Login",
+        "description": "Login User",
+        "requestBody": {
+          "description": "User Login Object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Login"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Failed. Bad post data."
+          },
+          "422": {
+            "description": "Invalid Data"
+          }
+        }
+      }
+    },
+    "/check_service": {
+      "post": {
+        "tags": [
+          "Check if we deliver in the area"
+        ],
+        "summary": "Check by EIRCODE",
+        "description": "Enter Eircode",
+        "requestBody": {
+          "description": "Service Check Object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/serviceCheck"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Failed. Bad post data."
+          },
+          "422": {
+            "description": "Invalid Data"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "RegisterUser": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "password": {
+            "type": "string",
+            "format": "password"
+          },
+          "first_name": {
+            "type": "string",
+            "format": "string"
+          },
+          "last_name": {
+            "type": "string",
+            "format": "string"
+          },
+          "phone": {
+            "type": "string",
+            "format": "string"
+          },
+          "eir_code": {
+            "type": "string",
+            "format": "string"
+          }
+        }
+      },
+      "Login": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "password": {
+            "type": "string",
+            "format": "password"
+          }
+        }
+      },
+      "serviceCheck": {
+        "type": "object",
+        "properties": {
+          "eircode": {
+            "type": "string",
+            "format": "string"
+          }
+        }
+      }
+    }
+  }
+}
