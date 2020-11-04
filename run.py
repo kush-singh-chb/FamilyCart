@@ -12,7 +12,6 @@ app = Flask(__name__)
 api = Api(app)
 app.config['SECRET_KEY'] = os.environ['secret-key']
 
-
 # @app.before_first_request
 # def create_tables():
 #     UserModel.create_user_table()
@@ -40,3 +39,6 @@ api.add_resource(resources.UserLogoutAccess, '/logout/access')
 api.add_resource(resources.UserLogoutRefresh, '/logout/refresh')
 api.add_resource(resources.TokenRefresh, '/token/refresh')
 api.add_resource(resources.CheckService, '/check_service')
+
+if __name__ == '__main__':
+    app.run("0.0.0.0", debug=False)
