@@ -8,7 +8,7 @@ import models
 import resources
 from models import UserModel, RevokedTokenModel
 
-app = Flask(__name__)
+application = app = Flask(__name__)
 api = Api(app)
 app.config['SECRET_KEY'] = os.environ.get('secret-key')
 
