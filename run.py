@@ -41,4 +41,4 @@ api.add_resource(resources.TokenRefresh, '/token/refresh')
 api.add_resource(resources.CheckService, '/check_service')
 
 if __name__ == '__main__':
-    app.run("0.0.0.0", debug=False)
+    app.run(port=os.environ.get('port', default=3000), debug=False)
