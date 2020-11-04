@@ -1,3 +1,5 @@
+import re
+
 from flask_restful import reqparse
 
 
@@ -22,6 +24,10 @@ def check_service_validate():
     parser_register = reqparse.RequestParser()
     parser_register.add_argument('eircode', help='This field cannot be blank', required=True)
     return parser_register
+
+
+def validate_email(email) -> bool:
+    return re.match(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)", email)
 
 
 eir_code_pattern = "(?:^[AC-FHKNPRTV-Y][0-9]{2}|D6W)[ -]?[0-9AC-FHKNPRTV-Y]{4}$"

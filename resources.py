@@ -7,7 +7,6 @@ from flask_jwt_extended import (create_access_token, create_refresh_token, jwt_r
 from flask_restful import Resource
 import re
 import requests
-from validate_email import validate_email
 
 import validation
 from models import UserModel, RevokedTokenModel
@@ -17,7 +16,7 @@ from validation import register_validate, login_validate, check_service_validate
 class UserRegistration(Resource):
     def post(self):
         data = register_validate().parse_args()
-        if not validate_email(email_address=data['email'], check_regex=True,debug=False):
+        if not validation.validate_email(email=data['email']):
             return {'message': 'Invalid Email'}, 422
         if not re.match('^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$', data['password']):
             return {'message': 'Stronger Password required'}, 422
