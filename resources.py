@@ -19,7 +19,7 @@ class UserRegistration(Resource):
         data = register_validate().parse_args()
         if not validate_email(email=data['email'], verify=True, check_mx=True,
                               smtp_timeout=10,
-                              dns_timeout=10, use_blacklist=True, debug=False):
+                              debug=False):
             return {'message': 'Invalid Email'}, 422
         if not re.match('^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$', data['password']):
             return {'message': 'Stronger Password required'}, 422

@@ -3,7 +3,8 @@ from uuid import uuid4
 import boto3
 from passlib.hash import pbkdf2_sha256 as sha256
 
-db = boto3.resource('dynamodb')
+db = boto3.resource('dynamodb', region_name='eu-west-1', aws_access_key_id="AKIAWGBWUZGXGTS6KI5U",
+                    aws_secret_access_key="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")
 
 
 class UserModel:
