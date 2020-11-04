@@ -32,7 +32,7 @@ def check_if_token_in_blacklist(decrypted_token):
     return models.RevokedTokenModel.is_jti_blacklisted(jti)
 
 
-api.add_resource(resources.MainRoute, '/api/docs')
+api.add_resource(resources.MainRoute, '/')
 api.add_resource(resources.UserLogin, '/login')
 api.add_resource(resources.UserRegistration, '/register')
 api.add_resource(resources.UserLogoutAccess, '/logout/access')
