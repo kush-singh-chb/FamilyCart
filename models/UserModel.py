@@ -12,18 +12,26 @@ db = boto3.resource(service_name='dynamodb', region_name='eu-west-1',
 class UserModel:
     __tablename__ = 'users'
     id = uuid4()
-    username = None
-    email = None
-    firstname = None
-    lastname = None
-    password = None
+    username: str
+    email: str
+    firstname: str
+    lastname: str
+    password: str
+    eir_code: str
+    orders = []
+    usercart: str
 
     def save_to_db(self):
         res = db.Table(UserModel.__tablename__).put_item(
             Item={
+                'id': self.id,
                 'email': self.username[0],
                 'first_name': self.firstname,
-                'password': self.password
+                'password': self.password,
+                'last_name': self.lastname,
+                'eir_code': self.eir_code,
+                'orders': self.orders,
+                'usercart': self.usercart
             }
         )
         print(res)
@@ -82,52 +90,3 @@ class UserModel:
     @staticmethod
     def verify_hash(password, hash):
         return sha256.verify(password, hash[0])
-
-
-class RevokedTokenModel:
-    __tablename__ = 'revoked_tokens'
-    id = uuid4()
-    jti = None
-
-    @staticmethod
-    def create_revoke_table():
-        try:
-            table = db.create_table(
-                TableName=RevokedTokenModel.__tablename__,
-                KeySchema=[
-                    {
-                        'AttributeName': 'jwt',
-                        'KeyType': 'HASH'
-                    }
-                ],
-                AttributeDefinitions=[
-                    {
-                        'AttributeName': 'jwt',
-                        'AttributeType': 'S'
-                    }
-                ],
-                ProvisionedThroughput={
-                    'ReadCapacityUnits': 5,
-                    'WriteCapacityUnits': 5
-                }
-            )
-
-            # Wait until the table exists.
-            table.meta.client.get_waiter('table_exists').wait(TableName=RevokedTokenModel.__tablename__)
-        except Exception as e:
-            print(e)
-            pass
-
-    def add(self):
-        db.Table(RevokedTokenModel.__tablename__).put_item(Item={
-            'jwt': self.jti,
-            'id': self.id
-        })
-
-    @classmethod
-    def is_jti_blacklisted(cls, jti):
-        response = db.Table(RevokedTokenModel.__tablename__).get_item(Key={
-            'jwt': jti,
-
-        })
-        return len(response) < 0

@@ -27,7 +27,7 @@
     "/register": {
       "post": {
         "tags": [
-          "User Registration"
+          "User"
         ],
         "summary": "Create User",
         "requestBody": {
@@ -57,7 +57,7 @@
     "/login": {
       "post": {
         "tags": [
-          "User Login"
+          "User"
         ],
         "summary": "Login",
         "description": "Login User",
@@ -88,7 +88,7 @@
     "/check_service": {
       "post": {
         "tags": [
-          "Check if we deliver in the area"
+          "Check Service"
         ],
         "summary": "Check by EIRCODE",
         "description": "Enter Eircode",
@@ -98,11 +98,83 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/serviceCheck"
+                "$ref": "#/components/schemas/ServiceCheck"
               }
             }
           }
         },
+        "responses": {
+          "201": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Failed. Bad post data."
+          },
+          "422": {
+            "description": "Invalid Data"
+          }
+        }
+      }
+    },
+    "/ethnicCategory": {
+      "get": {
+        "tags": [
+          "Category"
+        ],
+        "responses": {
+          "201": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Failed. Bad post data."
+          },
+          "422": {
+            "description": "Invalid Data"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Category"
+        ],
+        "description": "Create a Category",
+        "requestBody": {
+          "description": "Create Category Object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ethnicCategory"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Failed. Bad post data."
+          },
+          "422": {
+            "description": "Invalid Data"
+          }
+        }
+      }
+    },
+    "/ethnicCategory/{_id}": {
+      "get": {
+        "tags": [
+          "Category"
+        ],
+        "description": "Get Category",
+        "parameters": [
+          {
+            "name": "_id",
+            "in": "path",
+            "required": true
+          }
+        ],
         "responses": {
           "201": {
             "description": "OK"
@@ -168,10 +240,23 @@
           }
         }
       },
-      "serviceCheck": {
+      "ServiceCheck": {
         "type": "object",
         "properties": {
           "eircode": {
+            "type": "string",
+            "format": "string"
+          }
+        }
+      },
+      "ethnicCategory": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "string"
+          },
+          "name": {
             "type": "string",
             "format": "string"
           }

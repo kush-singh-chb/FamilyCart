@@ -27,7 +27,16 @@ def check_service_validate():
 
 
 def validate_email(email) -> bool:
-    return re.match(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)", email)
+    pattern = re.compile("(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)")
+    return bool(pattern.match(email))
 
 
-eir_code_pattern = "(?:^[AC-FHKNPRTV-Y][0-9]{2}|D6W)[ -]?[0-9AC-FHKNPRTV-Y]{4}$"
+def validate_eir(code) -> bool:
+    eir_code_pattern = re.compile("(?:^[AC-FHKNPRTV-Y][0-9]{2}|D6W)[ -]?[0-9AC-FHKNPRTV-Y]{4}$")
+    return bool(eir_code_pattern.match(code))
+
+
+def category_create_validate():
+    parser_register = reqparse.RequestParser()
+    parser_register.add_argument('name', help='This field cannot be blank', required=True)
+    return parser_register
