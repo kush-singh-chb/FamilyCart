@@ -5,6 +5,7 @@ from flask_jwt_extended import JWTManager
 from flask_restful import Api
 
 from models.RevokedTokenModel import RevokedTokenModel
+from resources.UnderConstruction import UnderConstruction
 from resources.CheckService import TokenRefresh, CheckService
 from resources.EthnicCategory import EthnicCategory, EthnicCategoryByID
 from resources.MainRoute import MainRoute
@@ -37,7 +38,8 @@ def check_if_token_in_blacklist(decrypted_token):
     return RevokedTokenModel.is_jti_blacklisted(jti)
 
 
-api.add_resource(MainRoute, '/')
+api.add_resource(UnderConstruction, '/')
+api.add_resource(MainRoute, '/swagger')
 api.add_resource(UserLogin, '/login')
 api.add_resource(UserRegistration, '/register')
 api.add_resource(UserLogoutAccess, '/logout/access')
