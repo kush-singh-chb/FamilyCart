@@ -7,13 +7,15 @@
           integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 </head>
 <style>
-    html{
+    html {
         height: 100%;
     }
+
     body {
-        background: linear-gradient(rgba(252, 252, 252, 0.5), rgba(255, 255, 255, 0.5)),url("../static/img/3652012.jpg") no-repeat;
+        background: linear-gradient(rgba(252, 252, 252, 0.5), rgba(255, 255, 255, 0.5)), url("../static/img/3652012.jpg") no-repeat;
         background-size: cover;
     }
+
     div {
         position: fixed;
         top: -5%;
@@ -32,11 +34,31 @@
         margin-left: -50px;
         margin-top: -10px;
     }
+
+    @media only screen and (min-width: 768px) {
+        div {
+            position: fixed;
+            top: 5%;
+            left: 15%;
+        }
+        .offset{
+            width: 120%;
+            margin-left: -80px;
+        }
+        div h1{
+            font-size: 80px;
+        }
+        div a img{
+            height: 80%;
+            width: 80%;
+            margin-left: 100px;
+        }
+    }
 </style>
 <body>
-<div class="container text-center">
+<div class="container">
     <img class="offset" src="../static/img/logo.png">
-    <h1>We are working on it! &#128522</h1>
+    <h1 class="text-center">Coming Soon! &#128522</h1>
     <a href="https://www.animatedimages.org/cat-under-construction-695.htm"><img
             src="https://www.animatedimages.org/data/media/695/animated-under-construction-image-0035.gif"
             alt="animated-under-construction-image-0035"/></a>
