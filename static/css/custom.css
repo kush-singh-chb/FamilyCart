@@ -1,0 +1,82 @@
+html {
+    height: 100%;
+}
+
+body {
+    background: linear-gradient(rgba(252, 252, 252, 0.5), rgba(255, 255, 255, 0.5)), url('/static/img/3652012.jpg'), no-repeat;
+    background-size: cover;
+}
+
+div {
+    margin-top: -100px;
+}
+
+@media only screen
+and (min-device-width: 320px)
+and (max-device-width: 568px)
+and (-webkit-min-device-pixel-ratio: 2) {
+    html {
+        height: 100%;
+    }
+
+    body {
+        background: linear-gradient(rgba(252, 252, 252, 0.5), rgba(255, 255, 255, 0.5)), url("/static/img/3652012.jpg"), no-repeat;
+        background-size: cover;
+    }
+
+    div {
+        position: fixed;
+        top: 20%;
+        left: 15%;
+    }
+
+    .offset {
+
+    }
+
+    div h1 {
+        font-size: 80px;
+        margin-top: -100px;
+    }
+
+    .gif {
+        width: 80%;
+        height: 80%;
+    }
+
+}
+
+@media only screen
+and (min-device-width: 375px)
+and (max-device-width: 667px)
+and (-webkit-min-device-pixel-ratio: 2) {
+    html {
+        height: 100%;
+    }
+
+    body {
+        background: linear-gradient(rgba(252, 252, 252, 0.5), rgba(255, 255, 255, 0.5)), url("/static/img/3652012.jpg"), no-repeat;
+        background-size: cover;
+    }
+
+    div {
+        position: fixed;
+        top: 20%;
+        left: 15%;
+    }
+
+    .offset {
+
+    }
+
+    div h1 {
+        font-size: 80px;
+        margin-top: -100px;
+    }
+
+    .gif {
+        width: 80%;
+        height: 80%;
+    }
+
+}
